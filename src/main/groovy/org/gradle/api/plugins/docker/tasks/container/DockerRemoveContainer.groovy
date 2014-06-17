@@ -20,6 +20,6 @@ class DockerRemoveContainer extends DockerExistingContainer {
     void runRemoteCommand(URLClassLoader classLoader) {
         logger.quiet "Removing container with ID '${getContainerId()}'."
         def dockerClient = getDockerClient(classLoader)
-        dockerClient.removeContainer(getContainerId())
+        dockerClient.removeContainerCmd(getContainerId()).exec()
     }
 }

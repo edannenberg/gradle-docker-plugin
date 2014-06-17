@@ -1,6 +1,7 @@
 buildscript {
     repositories {
-        maven { url 'http://jcenter.bintray.com' }
+        maven { url 'https://oss.sonatype.org/content/groups/public'}
+        maven { url 'http://jcenter.bintray.com' } 
     }
 
     dependencies {
@@ -10,13 +11,15 @@ buildscript {
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
+apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'bintray'
 
 group = 'org.gradle.api.plugins'
-version = '0.1'
+version = '0.2'
 
 repositories {
+    maven { url 'https://oss.sonatype.org/content/groups/public' }
     mavenCentral()
 }
 
@@ -74,6 +77,7 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact groovydocJar
+            artifactId 'gradle-docker-plugin'
 
             pom.withXml {
                 def root = asNode()

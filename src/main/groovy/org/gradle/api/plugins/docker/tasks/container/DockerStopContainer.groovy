@@ -32,11 +32,11 @@ class DockerStopContainer extends DockerExistingContainer {
 
         if(!getTimeout()) {
             logger.quiet "Stopping container with ID '${getContainerId()}'."
-            dockerClient.stopContainer(getContainerId())
+            dockerClient.stopContainerCmd(getContainerId()).exec()
         }
         else {
             logger.quiet "Stopping container with ID '${getContainerId()}' and timeout ${getTimeout()}s."
-            dockerClient.stopContainer(getContainerId(), getTimeout())
+            dockerClient.stopContainerCmd(getContainerId(), getTimeout()).exec()
         }
     }
 }

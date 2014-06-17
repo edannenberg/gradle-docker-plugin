@@ -20,7 +20,7 @@ class DockerStartContainer extends DockerExistingContainer {
     void runRemoteCommand(URLClassLoader classLoader) {
         logger.quiet "Starting container with ID '${getContainerId()}'."
         def dockerClient = getDockerClient(classLoader)
-        dockerClient.startContainer(getContainerId())
+        dockerClient.startContainerCmd(getContainerId()).exec()
     }
 }
 

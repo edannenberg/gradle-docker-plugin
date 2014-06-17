@@ -40,11 +40,11 @@ class DockerBuildImage extends AbstractDockerTask {
 
         if(!getTag()) {
             logger.quiet "Building image from folder '${getInputDir()}'."
-            dockerClient.build(getInputDir())
+            dockerClient.buildImageCmd(getInputDir()).exec()
         }
         else {
             logger.quiet "Building image from folder '${getInputDir()}' with tag '${getTag()}'."
-            dockerClient.build(getInputDir(), getTag())
+            dockerClient.buildImageCmd(getInputDir()).withTag(getTag()).exec()
         }
     }
 }

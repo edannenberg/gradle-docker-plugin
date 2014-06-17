@@ -20,6 +20,6 @@ class DockerWaitContainer extends DockerExistingContainer {
     void runRemoteCommand(URLClassLoader classLoader) {
         logger.quiet "Waiting for container with ID '${getContainerId()}'."
         def dockerClient = getDockerClient(classLoader)
-        dockerClient.waitContainer(getContainerId())
+        dockerClient.waitContainerCmd(getContainerId()).exec()
     }
 }

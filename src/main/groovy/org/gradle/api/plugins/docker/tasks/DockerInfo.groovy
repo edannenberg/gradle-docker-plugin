@@ -20,7 +20,7 @@ class DockerInfo extends AbstractDockerTask {
     void runRemoteCommand(URLClassLoader classLoader) {
         logger.quiet "Retrieving Docker info."
         def dockerClient = getDockerClient(classLoader)
-        def info = dockerClient.info()
+        def info = dockerClient.infoCmd().exec()
         logger.quiet "Debug                : $info.debug"
         logger.quiet "Containers           : $info.containers"
         logger.quiet "Driver               : $info.driver"

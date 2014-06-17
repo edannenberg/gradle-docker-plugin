@@ -20,7 +20,7 @@ class DockerVersion extends AbstractDockerTask {
     void runRemoteCommand(URLClassLoader classLoader) {
         logger.quiet "Retrieving Docker version."
         def dockerClient = getDockerClient(classLoader)
-        def version = dockerClient.version()
+        def version = dockerClient.versionCmd().exec()
         logger.quiet "Version          : $version.version"
         logger.quiet "Git Commit       : $version.gitCommit"
         logger.quiet "Go Version       : $version.goVersion"

@@ -80,7 +80,7 @@ abstract class AbstractDockerTask extends DefaultTask {
 
 
     protected getDockerClient(URLClassLoader classLoader) {
-        Class dockerClientClass = classLoader.loadClass('com.kpelykh.docker.client.DockerClient')
+        Class dockerClientClass = classLoader.loadClass('com.github.dockerjava.client.DockerClient')
         Constructor constructor = dockerClientClass.getConstructor(String)
         constructor.newInstance(getServerUrl())
     }

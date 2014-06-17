@@ -130,13 +130,13 @@ class DockerCreateContainer extends AbstractDockerTask {
         def containerConfig = createContainerConfig(classLoader)
         logger.info "Container configuration: $containerConfig"
         def dockerClient = getDockerClient(classLoader)
-        def container = dockerClient.createContainer(containerConfig)
+        def container = dockerClient.createContainerCmd(containerConfig)
         logger.quiet "Created container with ID '$container.id'."
         containerId = container.id
     }
 
     private createContainerConfig(URLClassLoader classLoader) {
-        Class containerConfigClass = classLoader.loadClass('com.kpelykh.docker.client.model.ContainerConfig')
+        Class containerConfigClass = classLoader.loadClass('com.github.dockerjava.client.model.CreateContainerConfig')
         def containerConfig = containerConfigClass.newInstance()
         containerConfig.image = getImageId()
 

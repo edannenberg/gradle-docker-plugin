@@ -63,12 +63,12 @@ class DockerCommitImage extends AbstractDockerTask {
         logger.quiet "Commiting image for container '${getContainer()}'."
         def dockerClient = getDockerClient(classLoader)
         def commitConfig = createCommitConfig(classLoader)
-        String commitId = dockerClient.commit(commitConfig)
+        String commitId = dockerClient.commitCmd(commitConfig).exec()
         logger.quiet "Created image with ID '$commitId'."
     }
 
     private createCommitConfig(URLClassLoader classLoader) {
-        Class commitConfigClass = classLoader.loadClass('com.kpelykh.docker.client.model.CommitConfig')
+        Class commitConfigClass = classLoader.loadClass('com.github.dockerjava.client.model.CommitConfig')
         def commitConfig = commitConfigClass.newInstance()
         commitConfig.container = getContainer()
         commitConfig.repo = getRepository()

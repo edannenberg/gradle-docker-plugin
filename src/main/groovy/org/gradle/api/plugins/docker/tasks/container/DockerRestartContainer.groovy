@@ -32,11 +32,11 @@ class DockerRestartContainer extends DockerExistingContainer {
 
         if(!getTimeout()) {
             logger.quiet "Restarting container with ID '${getContainerId()}'."
-            dockerClient.restart(getContainerId())
+            dockerClient.restartCmd(getContainerId()).exec()
         }
         else {
             logger.quiet "Restarting container with ID '${getContainerId()}' and timeout ${getTimeout()}s."
-            dockerClient.restart(getContainerId(), getTimeout())
+            dockerClient.restartCmd(getContainerId(), getTimeout()).exec()
         }
     }
 }
